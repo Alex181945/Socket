@@ -2,6 +2,7 @@ package com.itgam.cachorros;
 
 import java.io.*;
 import java.net.*;
+import java.util.Date;
 
 public class Servidor {
 
@@ -28,6 +29,7 @@ public class Servidor {
 		/*Variables*/
 		int entrada;
 		long salida;
+		Date hora = new Date();
 
 		while (true) {            
 			try {
@@ -47,6 +49,8 @@ public class Servidor {
 				salida = (long)entrada * (long)entrada;
 
 				dos.writeLong(salida);
+				dos.writeUTF(hora.toString());
+				System.out.println(hora.toString());
 
 				dis.close();
 				dos.close();

@@ -33,9 +33,12 @@ public class Cliente {
 
 				dos.writeInt(numero);
 				long resultado = dis.readLong();
-
+				
 				System.out.println("Solicitud = "+numero+"\tResultado = "+
 						resultado);
+				
+				System.out.println("La hora del sistema es: "+
+						dis.readUTF());
 
 				dis.close();
 				dos.close();
