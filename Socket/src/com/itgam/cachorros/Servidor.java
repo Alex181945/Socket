@@ -34,6 +34,7 @@ public class Servidor {
 				/*El programa se va a quedar en este paso hasta detectar una
                 conexion*/           
 				Socket sckt = ss.accept();
+				/*Si alguien se conecta, se continua con la ejecucion*/
 				DataInputStream dis = new DataInputStream(sckt.getInputStream());
 				DataOutputStream dos = new DataOutputStream(sckt.getOutputStream());
 
