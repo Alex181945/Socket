@@ -18,7 +18,7 @@ public class Cliente {
 
 		int puerto = 1234;
 
-		for (int i = 1; i < args.length; i++) {
+		for (int i = 1; i < 2; i++) {
 			Socket sckt = null;
 			DataInputStream dis = null;
 			DataOutputStream dos = null;

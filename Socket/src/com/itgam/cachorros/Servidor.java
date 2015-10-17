@@ -53,7 +53,7 @@ public class Servidor {
 				sckt.close();
 
 				System.out.println("Cliente = "+direccion+" puerto = "+puerto+
-						"\tEntrada = "+entrada+" Salida ="+salida);
+						" Entrada = "+entrada+" Salida ="+salida);
 			} catch (Exception e) {
 				System.err.println("Se ha producido un error: "+e);
 			}
