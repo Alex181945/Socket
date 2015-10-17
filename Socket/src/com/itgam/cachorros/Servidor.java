@@ -26,7 +26,9 @@ public class Servidor {
 			System.exit(-1);
 		}
 
-		/*Variables*/
+		/*Variables de entrada y salida
+		 * En este caso tambien creamos un objeto del tipo date
+		 * para obtener la hora del servidor*/
 		int entrada;
 		long salida;
 		Date hora = new Date();
@@ -43,19 +45,30 @@ public class Servidor {
 				int puerto = sckt.getPort();
 
 				InetAddress direccion = sckt.getInetAddress();
-
+				/*Asignamos a la variable entrada lo que 
+				 * el cliente envie en este caso un entero*/
 				entrada = dis.readInt();
-
+				
+				/*Realizamos una operacion en este caso multiplicando por si 
+				 * mismo el valor de entrada y casteando al tipo de dato long
+				 * se podria cambiar la sentencia por la siguiente:
+				 * salida = (long) Math.pow(entrada, 2);*/
 				salida = (long)entrada * (long)entrada;
-
+				
+				/*Enviamos la operacion asi como la hora del servidor*/
 				dos.writeLong(salida);
 				dos.writeUTF(hora.toString());
+				
+				/*Solo para asegurarnos de que conincidan la imprmimos de este lado XD*/
 				System.out.println(hora.toString());
-
+				
+				/*Cerramos conexiones*/
 				dis.close();
 				dos.close();
 				sckt.close();
-
+				
+				/*Por ultimo guardamos un registro de quien se conecto y por que puerto lo realizo
+				 * esta informacin podria ser parte de un log*/
 				System.out.println("Cliente = "+direccion+" puerto = "+puerto+
 						" Entrada = "+entrada+" Salida ="+salida);
 			} catch (Exception e) {
