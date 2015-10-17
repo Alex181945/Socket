@@ -49,6 +49,20 @@ public class Servidor {
 				 * el cliente envie en este caso un entero*/
 				entrada = dis.readInt();
 				
+				/*Recepcion del archivo*/
+				String nombreArchivo = dis.readUTF().toString();
+				int tam = dis.readInt();
+				FileOutputStream fos = new FileOutputStream(nombreArchivo);
+	            BufferedOutputStream out = new BufferedOutputStream(fos);
+	            BufferedInputStream in = new BufferedInputStream(sckt.getInputStream());
+	            byte[] buffer = new byte[tam];
+	            for( int i = 0; i < buffer.length; i++ )
+	               {
+	                  buffer[i] = ( byte )in.read(); 
+	               }
+	            out.write(buffer);
+	            
+				
 				/*Realizamos una operacion en este caso multiplicando por si 
 				 * mismo el valor de entrada y casteando al tipo de dato long
 				 * se podria cambiar la sentencia por la siguiente:
@@ -63,6 +77,9 @@ public class Servidor {
 				System.out.println(hora.toString());
 				
 				/*Cerramos conexiones*/
+				out.flush(); 
+	            in.close();
+	            out.close();
 				dis.close();
 				dos.close();
 				sckt.close();

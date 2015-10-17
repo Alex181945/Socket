@@ -38,6 +38,22 @@ public class Cliente {
 				
 				/*Envio de variable numero*/
 				dos.writeInt(numero);
+				/*Enviando el archivo al servidor*/
+				File archivo = new File("E:/Descargas/descarga.jpg");
+				int tamañoArchivo = (int)archivo.length();
+				System.out.println( "Enviando Archivo: "+archivo.getName());
+				dos.writeUTF(archivo.getName());
+				dos.writeInt(tamañoArchivo);
+				FileInputStream fis = new FileInputStream("E:/Descargas/descarga.jpg");
+	            BufferedInputStream bis = new BufferedInputStream(fis);
+	            BufferedOutputStream bos = new BufferedOutputStream(sckt.getOutputStream());
+	            byte[] buffer = new byte[tamañoArchivo];
+	            bis.read( buffer );
+	            for( int x = 0; x < buffer.length; x++ )
+	            {
+	                bos.write( buffer[ x ] ); 
+	            }
+	            System.out.println( "Archivo Enviado: "+archivo.getName());
 				/*Valores que nos envia el servidor*/
 				long resultado = dis.readLong();
 				
@@ -47,6 +63,8 @@ public class Cliente {
 				System.out.println("La hora del sistema es: "+
 						dis.readUTF());
 				/*Cerrando la conexion*/
+				bis.close();
+	            bos.close();
 				dis.close();
 				dos.close();
 			} catch (Exception e) {
