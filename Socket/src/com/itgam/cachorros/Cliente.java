@@ -2,6 +2,7 @@ package com.itgam.cachorros;
 
 import java.io.*;
 import java.net.*;
+import javax.swing.JFileChooser;
 
 public class Cliente {
 	
@@ -39,7 +40,31 @@ public class Cliente {
 				/*Envio de variable numero*/
 				dos.writeInt(numero);
 				/*Enviando el archivo al servidor*/
-				File archivo = new File("E:/Descargas/descarga.jpg");
+				/*Vamos abrir un browser*/
+				/*Con jfile vamos abrir un cuadro de dialogo que nos va a permitir 
+				 * la eleccion de nuestros archivos*/
+				JFileChooser selectorArchivos = new JFileChooser();
+				/*files and direcroties nos permite selccionar carpetas y archivos
+				 * si ponemos unicamente only directories solo podemos ver carpetas*/
+				selectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				selectorArchivos.setAcceptAllFileFilterUsed(true);
+				File archivo = null;
+				/*Este if controla el que el usuario seleccione un archivo o no
+				 * approve option nos devuelve por valor numerico*/
+				if (selectorArchivos.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					/*En este momento estamos indicando la ruta del archivo*/
+					System.out.println("Directorio: " + selectorArchivos.getSelectedFile());
+					/*Aqui pasamos la ruta del archivo que seleccionamos
+					 * es importante recordar que archivo recibe como parametro un
+					 * string esto se logra con el metodo getAbsolutePath*/
+					archivo = new File(selectorArchivos.getSelectedFile().getAbsolutePath());
+					//Si no seleccionamos nada retornaremos No seleccion
+					}
+				else{
+					System.out.println("No selecionaste nada");
+				}
+				/*Termina apertura de browser*/
+				//File archivo = new File("E:/Descargas/descarga.jpg");
 				int tamañoArchivo = (int)archivo.length();
 				System.out.println( "Enviando Archivo: "+archivo.getName());
 				dos.writeUTF(archivo.getName());
