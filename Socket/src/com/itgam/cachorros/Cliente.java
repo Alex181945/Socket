@@ -66,10 +66,10 @@ public class Cliente {
 				/*Termina apertura de browser*/
 				//File archivo = new File("E:/Descargas/descarga.jpg");
 				int tamañoArchivo = (int)archivo.length();
-				System.out.println( "Enviando Archivo: "+archivo.getName());
+				System.out.println("Enviando Archivo: "+archivo.getName());
 				dos.writeUTF(archivo.getName());
 				dos.writeInt(tamañoArchivo);
-				FileInputStream fis = new FileInputStream("E:/Descargas/descarga.jpg");
+				FileInputStream fis = new FileInputStream(archivo);
 	            BufferedInputStream bis = new BufferedInputStream(fis);
 	            BufferedOutputStream bos = new BufferedOutputStream(sckt.getOutputStream());
 	            byte[] buffer = new byte[tamañoArchivo];
