@@ -63,6 +63,7 @@ public class Servidor {
 				System.out.println(hora.toString());
 				
 				/*Recepcion del archivo*/
+				
 				String nombreArchivo = dis.readUTF().toString();
 				int tam = dis.readInt();
 				System.out.println( "Recibiendo archivo "+nombreArchivo);
